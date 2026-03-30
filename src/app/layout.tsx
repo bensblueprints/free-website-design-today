@@ -34,8 +34,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-        <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
-        <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <script src="https://api.loopflo.io/js/form_embed.js" async></script>
       </head>
       <body className="min-h-full flex flex-col bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         {children}
