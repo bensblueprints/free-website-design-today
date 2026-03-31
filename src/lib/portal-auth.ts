@@ -1,4 +1,4 @@
-import { createServerClient } from './supabase';
+import { getClientById } from './portal-store';
 
 const JWT_SECRET = process.env.PORTAL_JWT_SECRET || 'fwd-portal-secret-2026';
 
@@ -80,13 +80,15 @@ export async function getClientFromToken(token: string) {
   const payload = await verifyToken(token);
   if (!payload) return null;
 
-  const supabase = createServerClient();
-  const { data } = await supabase
-    .from('portal_clients')
-    .select('id, full_name, business_name, email, avatar_url, is_active, created_at')
-    .eq('id', payload.id)
-    .single();
+  const client = await getClientById(payload.id);
+  if (!client || !client.is_active) return null;
 
-  if (!data || !data.is_active) return null;
-  return data;
+  return {
+    id: client.id,
+    full_name: client.full_name,
+    business_name: client.business_name,
+    email: client.email,
+    is_active: client.is_active,
+    created_at: client.created_at,
+  };
 }

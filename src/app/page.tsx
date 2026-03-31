@@ -358,6 +358,15 @@ export default function Home() {
           <p className="text-slate-500 text-sm">
             &copy; {new Date().getFullYear()} FreeWebsiteDesign.today. All rights reserved.
           </p>
+          <div className="mt-4 flex items-center justify-center gap-4">
+            <a href="/portal" className="text-slate-600 hover:text-slate-400 text-xs transition-colors">
+              Client Portal
+            </a>
+            <span className="text-slate-700">·</span>
+            <a href="/admin" className="text-slate-600 hover:text-slate-400 text-xs transition-colors">
+              Admin
+            </a>
+          </div>
         </div>
       </footer>
     </main>

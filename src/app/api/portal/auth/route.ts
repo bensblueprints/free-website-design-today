@@ -1,13 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createServerClient } from '@/lib/supabase';
 import { createToken, hashPassword, verifyPassword } from '@/lib/portal-auth';
+import { getClientByEmail, createClient } from '@/lib/portal-store';
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { action } = body;
-
-    const supabase = createServerClient();
 
     if (action === 'signup') {
       const { full_name, business_name, email, password } = body;
@@ -20,37 +18,24 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'Password must be at least 6 characters' }, { status: 400 });
       }
 
-      // Check if email already exists
-      const { data: existing } = await supabase
-        .from('portal_clients')
-        .select('id')
-        .eq('email', email.toLowerCase())
-        .single();
-
+      const existing = await getClientByEmail(email);
       if (existing) {
         return NextResponse.json({ error: 'An account with this email already exists' }, { status: 409 });
       }
 
       const password_hash = await hashPassword(password);
 
-      const { data: client, error } = await supabase
-        .from('portal_clients')
-        .insert({
-          full_name,
-          business_name: business_name || null,
-          email: email.toLowerCase(),
-          password_hash,
-        })
-        .select('id, full_name, business_name, email, created_at')
-        .single();
-
-      if (error) {
-        return NextResponse.json({ error: 'Failed to create account' }, { status: 500 });
-      }
+      const client = await createClient({
+        full_name,
+        business_name: business_name || undefined,
+        email,
+        password_hash,
+      });
 
       const token = await createToken({ id: client.id, email: client.email });
 
-      return NextResponse.json({ token, client });
+      const { password_hash: _, ...safeClient } = client;
+      return NextResponse.json({ token, client: safeClient });
     }
 
     if (action === 'login') {
@@ -60,12 +45,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'Email and password are required' }, { status: 400 });
       }
 
-      const { data: client } = await supabase
-        .from('portal_clients')
-        .select('*')
-        .eq('email', email.toLowerCase())
-        .single();
-
+      const client = await getClientByEmail(email);
       if (!client) {
         return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
       }
@@ -95,6 +75,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
   } catch (err) {
+    console.error('Portal auth error:', err);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
