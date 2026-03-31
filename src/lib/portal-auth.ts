@@ -81,7 +81,7 @@ export async function getClientFromToken(token: string) {
   if (!payload) return null;
 
   const client = await getClientById(payload.id);
-  if (!client || !client.is_active) return null;
+  if (!client) return null;
 
   return {
     id: client.id,

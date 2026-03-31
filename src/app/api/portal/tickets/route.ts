@@ -38,7 +38,8 @@ export async function POST(req: NextRequest) {
     });
 
     // Add first message
-    await addTicketMessage(ticket.id, {
+    await addTicketMessage({
+      ticket_id: ticket.id,
       sender_type: 'client',
       sender_name: senderName,
       message,

@@ -26,7 +26,7 @@ export async function authenticateRequest(req: NextRequest): Promise<AuthUser | 
   }
 
   const client = await getClientById(payload.id);
-  if (!client || !client.is_active) {
+  if (!client) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

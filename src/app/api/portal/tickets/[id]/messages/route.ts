@@ -49,7 +49,8 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
     const client = await getClientById(user.clientId);
     const senderName = isAdmin ? 'Free Website Design Today' : (client?.name || client?.full_name || user.email);
 
-    await addTicketMessage(id, {
+    await addTicketMessage({
+      ticket_id: id,
       sender_type: isAdmin ? 'agency' : 'client',
       sender_name: senderName,
       message,
