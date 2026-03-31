@@ -8,9 +8,10 @@ export async function POST(req: NextRequest) {
     const { action } = body;
 
     if (action === 'signup') {
-      const { full_name, business_name, email, password } = body;
+      const { name, full_name, business_name, email, password } = body;
+      const clientName = name || full_name;
 
-      if (!full_name || !email || !password) {
+      if (!clientName || !email || !password) {
         return NextResponse.json({ error: 'Name, email and password are required' }, { status: 400 });
       }
 
@@ -20,14 +21,15 @@ export async function POST(req: NextRequest) {
 
       const existing = await getClientByEmail(email);
       if (existing) {
-        return NextResponse.json({ error: 'An account with this email already exists' }, { status: 409 });
+        return NextResponse.json({ error: 'Email already registered' }, { status: 400 });
       }
 
       const password_hash = await hashPassword(password);
 
       const client = await createClient({
-        full_name,
-        business_name: business_name || undefined,
+        name: clientName,
+        full_name: clientName,
+        business_name: business_name || '',
         email,
         password_hash,
       });
@@ -42,12 +44,16 @@ export async function POST(req: NextRequest) {
       const { email, password } = body;
 
       if (!email || !password) {
-        return NextResponse.json({ error: 'Email and password are required' }, { status: 400 });
+        return NextResponse.json({ error: 'Email and password required' }, { status: 400 });
       }
 
       const client = await getClientByEmail(email);
       if (!client) {
         return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
+      }
+
+      if (!client.password_hash) {
+        return NextResponse.json({ error: 'No password set. Contact support.' }, { status: 401 });
       }
 
       if (!client.is_active) {
@@ -59,16 +65,19 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
       }
 
+      const role = client.role || (client.is_admin ? 'admin' : 'client');
       const token = await createToken({ id: client.id, email: client.email });
 
       return NextResponse.json({
         token,
         client: {
           id: client.id,
-          full_name: client.full_name,
-          business_name: client.business_name,
+          name: client.name || client.full_name,
           email: client.email,
-          created_at: client.created_at,
+          business_name: client.business_name,
+          service_type: client.service_type,
+          is_admin: client.is_admin || role === 'admin',
+          role,
         },
       });
     }
@@ -76,6 +85,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
   } catch (err) {
     console.error('Portal auth error:', err);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }

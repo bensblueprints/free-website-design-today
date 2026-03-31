@@ -85,9 +85,14 @@ export async function getClientFromToken(token: string) {
 
   return {
     id: client.id,
-    full_name: client.full_name,
+    name: client.name || client.full_name,
+    full_name: client.full_name || client.name,
     business_name: client.business_name,
     email: client.email,
+    service_type: client.service_type,
+    onboarding_status: client.onboarding_status,
+    is_admin: client.is_admin,
+    role: client.role,
     is_active: client.is_active,
     created_at: client.created_at,
   };
