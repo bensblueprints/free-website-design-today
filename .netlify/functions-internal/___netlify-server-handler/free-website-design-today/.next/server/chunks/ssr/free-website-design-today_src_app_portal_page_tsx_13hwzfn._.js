@@ -1,3 +1,0 @@
-module.exports=[38717,a=>{"use strict";var b=a.i(49749),c=a.i(21055);a.s(["default",0,function(){return(0,c.useEffect)(()=>{window.location.href="/portal/index.html"},[]),(0,b.jsx)("div",{style:{background:"#0a0a0a",minHeight:"100vh",display:"flex",alignItems:"center",justifyContent:"center"},children:(0,b.jsx)("p",{style:{color:"#8a8880",fontFamily:"sans-serif"},children:"Redirecting to portal..."})})}])}];
-
-//# sourceMappingURL=free-website-design-today_src_app_portal_page_tsx_13hwzfn._.js.map
