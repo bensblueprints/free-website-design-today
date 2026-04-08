@@ -142,8 +142,9 @@ export async function GET(request: NextRequest) {
       .order('created_at', { ascending: false });
 
     if (error) {
+      console.error('Supabase error:', JSON.stringify(error));
       return NextResponse.json(
-        { error: 'Failed to fetch leads' },
+        { error: 'Failed to fetch leads', details: error.message, code: error.code },
         { status: 500 }
       );
     }
