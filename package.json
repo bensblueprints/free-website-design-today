@@ -1,5 +1,5 @@
 {
-  "name": "free-website-design-today",
+  "name": "fwd-site",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,12 +10,13 @@
   },
   "dependencies": {
     "@eslint/eslintrc": "^3.3.5",
+    "@netlify/plugin-nextjs": "^5.15.9",
     "@supabase/supabase-js": "^2.100.1",
     "framer-motion": "^12.38.0",
     "lucide-react": "^0.468.0",
-    "next": "^15.5.14",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "next": "^16.2.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "resend": "^4.1.2"
   },
   "devDependencies": {
@@ -24,7 +25,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "^15.5.14",
+    "eslint-config-next": "^16.2.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
