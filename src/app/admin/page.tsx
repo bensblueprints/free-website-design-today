@@ -30,7 +30,7 @@ export default function AdminPage() {
   const [savingMeeting, setSavingMeeting] = useState<string | null>(null);
 
   const handleLogin = () => {
-    if (password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD || password === 'FreeWebsite2026!') {
+    if (password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD || password === 'admin123') {
       setIsAuthenticated(true);
       fetchData();
     } else {
