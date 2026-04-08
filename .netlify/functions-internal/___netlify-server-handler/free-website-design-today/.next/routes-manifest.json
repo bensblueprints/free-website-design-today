@@ -1,0 +1,222 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "app",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "onMatchHeaders": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/api/leads/[id]",
+      "regex": "^/api/leads/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/leads/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/portal/admin/clients/[id]",
+      "regex": "^/api/portal/admin/clients/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/portal/admin/clients/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/portal/admin/clients/[id]/add-service",
+      "regex": "^/api/portal/admin/clients/([^/]+?)/add\\-service(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/portal/admin/clients/(?<nxtPid>[^/]+?)/add\\-service(?:/)?$"
+    },
+    {
+      "page": "/api/portal/admin/tickets/[id]",
+      "regex": "^/api/portal/admin/tickets/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/portal/admin/tickets/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/portal/documents/[id]",
+      "regex": "^/api/portal/documents/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/portal/documents/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/portal/tasks/[id]",
+      "regex": "^/api/portal/tasks/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/portal/tasks/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/portal/tickets/[id]/messages",
+      "regex": "^/api/portal/tickets/([^/]+?)/messages(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/portal/tickets/(?<nxtPid>[^/]+?)/messages(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/admin",
+      "regex": "^/admin(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin(?:/)?$"
+    },
+    {
+      "page": "/api/leads",
+      "regex": "^/api/leads(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/leads(?:/)?$"
+    },
+    {
+      "page": "/api/meeting",
+      "regex": "^/api/meeting(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/meeting(?:/)?$"
+    },
+    {
+      "page": "/api/portal/admin/clients",
+      "regex": "^/api/portal/admin/clients(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/portal/admin/clients(?:/)?$"
+    },
+    {
+      "page": "/api/portal/admin/settings",
+      "regex": "^/api/portal/admin/settings(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/portal/admin/settings(?:/)?$"
+    },
+    {
+      "page": "/api/portal/admin/tickets",
+      "regex": "^/api/portal/admin/tickets(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/portal/admin/tickets(?:/)?$"
+    },
+    {
+      "page": "/api/portal/auth",
+      "regex": "^/api/portal/auth(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/portal/auth(?:/)?$"
+    },
+    {
+      "page": "/api/portal/documents",
+      "regex": "^/api/portal/documents(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/portal/documents(?:/)?$"
+    },
+    {
+      "page": "/api/portal/me",
+      "regex": "^/api/portal/me(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/portal/me(?:/)?$"
+    },
+    {
+      "page": "/api/portal/messages",
+      "regex": "^/api/portal/messages(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/portal/messages(?:/)?$"
+    },
+    {
+      "page": "/api/portal/payment-auth",
+      "regex": "^/api/portal/payment\\-auth(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/portal/payment\\-auth(?:/)?$"
+    },
+    {
+      "page": "/api/portal/projects",
+      "regex": "^/api/portal/projects(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/portal/projects(?:/)?$"
+    },
+    {
+      "page": "/api/portal/tasks",
+      "regex": "^/api/portal/tasks(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/portal/tasks(?:/)?$"
+    },
+    {
+      "page": "/api/portal/tickets",
+      "regex": "^/api/portal/tickets(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/portal/tickets(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/meeting",
+      "regex": "^/meeting(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/meeting(?:/)?$"
+    },
+    {
+      "page": "/portal",
+      "regex": "^/portal(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/portal(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}
